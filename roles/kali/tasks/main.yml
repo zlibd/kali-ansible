@@ -1,6 +1,6 @@
 ---
 - name: install packages
-  become: yes
+  become: true
   ansible.builtin.apt:
     pkg:
       - code-oss
@@ -13,7 +13,7 @@
       - golang-go
 
 - name: install chrome
-  become: yes
+  become: true
   ansible.builtin.apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 

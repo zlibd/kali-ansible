@@ -1,13 +1,15 @@
 ---
 - name: apt update
-  become: yes
+  become: true
   ansible.builtin.apt:
     update_cache: yes
     name: "*"
     state: latest
+    cache_valid_time: 3600
+    
 
 - name: clean up
-  become: yes
+  become: true
   ansible.builtin.apt:
     autoclean: yes
     autoremove: yes
