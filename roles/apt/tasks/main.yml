@@ -1,0 +1,14 @@
+---
+- name: apt update
+  become: yes
+  ansible.builtin.apt:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: clean up
+  become: yes
+  ansible.builtin.apt:
+    autoclean: yes
+    autoremove: yes
+    clean: yes

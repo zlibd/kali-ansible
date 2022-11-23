@@ -1,0 +1,7 @@
+---
+- name: kali workstation deployment
+  hosts: localhost
+  connection: local
+  roles:
+    - apt
+    - kali
