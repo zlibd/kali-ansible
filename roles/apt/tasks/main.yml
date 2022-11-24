@@ -1,16 +1,15 @@
 ---
-- name: apt update
+- name: Upgrade all packages
   become: true
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     name: "*"
     state: latest
     cache_valid_time: 3600
-    
 
-- name: clean up
+- name: Clean up
   become: true
   ansible.builtin.apt:
-    autoclean: yes
-    autoremove: yes
-    clean: yes
+    autoclean: true
+    autoremove: true
+    clean: true

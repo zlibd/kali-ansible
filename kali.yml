@@ -1,7 +1,9 @@
 ---
-- name: kali workstation deployment
+- name: Kali workstation deployment
   hosts: localhost
   connection: local
+  vars_files:
+    - group_vars/kali.yml
   roles:
     - apt
     - kali

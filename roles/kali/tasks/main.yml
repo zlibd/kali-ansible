@@ -1,5 +1,5 @@
 ---
-- name: install packages
+- name: Install packages
   become: true
   ansible.builtin.apt:
     pkg:
@@ -12,21 +12,67 @@
       - dirsearch
       - golang-go
 
-- name: install chrome
+- name: Install python packages
+  ansible.builtin.pip:
+    extra_args: --user
+    name:
+      - ansible-lint
+
+- name: Install chrome
   become: true
   ansible.builtin.apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-- name: install gowitness
-  command: "go install github.com/sensepost/gowitness@latest"
-  changed_when: no
+- name: Install gowitness
+  ansible.builtin.command: "go install github.com/sensepost/gowitness@latest"
+  changed_when: false
 
-- name: add go/bin and .local/bin to $PATH
+- name: Add go/bin and .local/bin to $PATH
   ansible.builtin.lineinfile:
-    path: /home/kali/.zshrc
-    line: export PATH="$PATH:/home/kali/go/bin"
+    path: "{{ kali_home }}/.zshrc"
+    line: export PATH="$PATH:{{ kali_home }}/go/bin"
 
-- name: add .local/bin to $PATH
+- name: Add .local/bin to $PATH
   ansible.builtin.lineinfile:
-    path: /home/kali/.zshrc
-    line: export PATH="$PATH:/home/kali/.local/bin"
+    path: "{{ kali_home }}/.zshrc"
+    line: export PATH="$PATH:{{ kali_home }}/.local/bin"
+
+- name: Fix user-dirs.dirs
+  ansible.builtin.template:
+    src: user-dirs.dirs.j2
+    dest: "{{ kali_home }}/.config/user-dirs.dirs"
+    mode: '0600'
+
+- name: Add user-dirs.conf
+  ansible.builtin.template:
+    src: user-dirs.conf.j2
+    dest: "{{ kali_home }}/.config/user-dirs.conf"
+    mode: '0600'
+
+- name: Remove unnecessary directories
+  ansible.builtin.file:
+    state: absent
+    path: "{{ kali_home }}/{{ item }}"
+  with_items:
+    - Desktop
+    - Music
+    - Pictures
+    - Public
+    - Templates
+    - Videos
+
+- name: Check if Desktop folder was deleted
+  ansible.builtin.stat:
+    path: "{{ kali_home }}/Desktop"
+  register: desktop_folder
+
+- name: Force remove Desktop
+  ansible.builtin.command: "rmdir {{ kali_home }}/Desktop && touch {{ kali_home }}/Desktop"
+  when: desktop_folder.stat.exists
+  register: dummy_desktop
+
+- name: Remove Desktop dummy file
+  ansible.builtin.file:
+    path: "{{ kali_home }}/Desktop"
+    state: absent
+  when: desktop_folder.exists
