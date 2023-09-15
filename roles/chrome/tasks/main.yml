@@ -1,5 +1,6 @@
 - name: Add Chrome GPG signing key
   become: true
+  ansible.builtin.apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
     state: present
 
