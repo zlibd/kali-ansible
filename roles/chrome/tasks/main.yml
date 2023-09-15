@@ -1,3 +1,8 @@
+- name: Add Chrome GPG signing key
+  become: true
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    state: present
+
 - name: Add Chrome repository
   become: true
   ansible.builtin.apt_repository:
@@ -10,3 +15,4 @@
   ansible.builtin.apt:
     update_cache: true
     pkg: google-chrome-stable
+    state: present
