@@ -57,6 +57,7 @@
     - Videos
 
 - name: Change ownership of /opt to kali
+  become: yes
   ansible.builtin.file:
     state: directory
     path: /opt
