@@ -8,6 +8,7 @@
     - apt
     - kali
     - xfce
+    - rofi
     - docker
     - chrome 
     - autorecon

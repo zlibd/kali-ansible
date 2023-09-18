@@ -1,0 +1,12 @@
+---
+- name: install rofi
+  become: true
+  ansible.builtin.apt:
+    pkg: rofi
+
+- name: add XFCE keyboard shortcut
+  community.general.xfconf:
+    channel: "xfce4-keyboard-shortcuts"
+    property: "/commands/custom/<Alt>space"
+    value_type: "string"
+    value: "rofi -modi drun,run -show drun"
