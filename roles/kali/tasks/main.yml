@@ -63,11 +63,3 @@
     path: /opt
     group: kali
     owner: kali
-
-- name: Clone AutoRecon
-  ansible.builtin.git:
-    repo: 'https://github.com/Tib3rius/AutoRecon.git'
-    dest: /opt/AutoRecon
-    single_branch: yes
-    version: main
-    depth: 1
