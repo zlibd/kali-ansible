@@ -7,6 +7,7 @@
   roles:
     - apt
     - kali
+    - xfce
     - docker
     - chrome 
     - autorecon

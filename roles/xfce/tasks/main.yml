@@ -1,0 +1,34 @@
+- name: hide desktop icons
+  community.general.xfconf:
+    channel: "xfce4-desktop"
+    property: "/desktop-icons/style"
+    value_type: "int"
+    value: "0"
+
+- name: set keybind tile_up_right
+  community.general.xfconf:
+    channel: "xfce4-keyboard-shortcuts"
+    property: "/xfwm4/custom/<Super>k"
+    value_type: "string"
+    value: "tile_up_right_key"
+
+- name: set keybind tile_down_right
+  community.general.xfconf:
+    channel: "xfce4-keyboard-shortcuts"
+    property: "/xfwm4/custom/<Super>j"
+    value_type: "string"
+    value: "tile_down_right_key"
+
+- name: set keybind tile_up_left
+  community.general.xfconf:
+    channel: "xfce4-keyboard-shortcuts"
+    property: "/xfwm4/custom/<Super>f"
+    value_type: "string"
+    value: "tile_up_left_key"
+
+- name: set keybind tile_down_left
+  community.general.xfconf:
+    channel: "xfce4-keyboard-shortcuts"
+    property: "/xfwm4/custom/<Super>d"
+    value_type: "string"
+    value: "tile_down_left_key"
