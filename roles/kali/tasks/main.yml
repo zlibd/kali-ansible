@@ -56,6 +56,18 @@
     - Templates
     - Videos
 
+- name: Remove unnecessary directories - twice over
+  ansible.builtin.file:
+    state: absent
+    path: "{{ kali_home }}/{{ item }}"
+  with_items:
+    - Desktop
+    - Music
+    - Pictures
+    - Public
+    - Templates
+    - Videos
+
 - name: Change ownership of /opt to kali
   become: yes
   ansible.builtin.file:
