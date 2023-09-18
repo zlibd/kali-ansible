@@ -70,3 +70,8 @@
     property: "/desktop-icons/style"
     value_type: "int"
     value: "0"
+
+- name: install vimrc
+  ansible.builtin.template:
+    src: vimrc.j2
+    dest: "{{ kali_home }}/.vimrc"
