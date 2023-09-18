@@ -63,3 +63,10 @@
     path: /opt
     group: kali
     owner: kali
+
+- name: hide desktop icons
+  community.general.xfconf:
+    channel: "xfce4-desktop"
+    property: "/desktop-icons/style"
+    value_type: "int"
+    value: "0"
