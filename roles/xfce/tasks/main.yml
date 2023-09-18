@@ -66,4 +66,4 @@
     channel: "xfce4-keyboard-shortcuts"
     property: "/commands/custom/<Super>f"
     value_type: "string"
-    value: "/usr/lib/firefox-esr/firefox-esr %u"
+    value: "/usr/lib/firefox-esr/firefox-esr"
