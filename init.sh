@@ -1,6 +1,7 @@
 #!/bin/bash
 
 read -s -p "sudo password: " PASSWORD
+echo ""
 
 # Install ansible
 python3 -m pip -q install --user ansible
