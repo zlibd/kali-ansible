@@ -4,12 +4,14 @@
   ansible.builtin.apt:
     pkg:
       - code-oss
+      - htop
       - amass
       - subfinder
       - assetfinder
       - ffuf
       - gobuster
       - dirsearch
+      - sublist3r
 
 - name: Add .local/bin to zshrc $PATH
   ansible.builtin.lineinfile:

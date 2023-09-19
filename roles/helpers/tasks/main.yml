@@ -1,0 +1,11 @@
+---
+- name: create helper scripts
+  become: true
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/usr/local/bin/{{ item | basename | regex_replace('\.j2$', '') }}"
+    owner: root
+    group: root
+    mode: '0755'
+  with_fileglob:
+    - ../templates/*.j2

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+usage() {
+	echo "Usage: $0 [-q <STRING>]" 1>&2
+	echo ""
+	echo "No flags will open a GTFOBins Firefox tab."
+	echo "Query flag will open a Firefox tab and attempt a"
+	echo "query with that string."
+	exit 0
+}
+
+# Send to base site, otherwise send to queried page
+gtfobins() {
+	if [ -z "$QUERY" ]
+	then
+		firefox https://gtfobins.github.io/
+	else
+		firefox https://gtfobins.github.io/gtfobins/"$QUERY"
+	fi
+}
+
+# Suppress `getopts` generated error messages.
+OPTERR=0
+
+# Declare arguments
+while getopts "hq:" ARGS
+do
+	case "${ARGS}" in
+		q) 
+			QUERY=${OPTARG}
+			gtfobins
+			;;
+
+		h)
+			usage
+			;;
+	esac
+done			
+
+# If no `getopts` arguments were provided, send to function
+if [ "$OPTIND" -eq 1 ]
+then
+	gtfobins
+fi

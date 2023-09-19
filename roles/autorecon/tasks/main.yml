@@ -51,11 +51,6 @@
   ansible.builtin.template:
     src: autorecon.j2
     dest: "/usr/local/bin/autorecon"
-
-- name: ensure proper permissions
-  become: yes
-  ansible.builtin.file:
-    path: /usr/local/bin/autorecon
     owner: root
     group: root
     mode: '0755'
