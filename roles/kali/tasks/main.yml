@@ -12,6 +12,8 @@
       - gobuster
       - dirsearch
       - sublist3r
+      - remmina
+      - sshpass
 
 - name: Add .local/bin to zshrc $PATH
   ansible.builtin.lineinfile:
