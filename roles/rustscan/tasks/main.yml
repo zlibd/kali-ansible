@@ -1,5 +1,6 @@
 ---
 - name: pull rustscan docker image
+  become: true
   community.docker.docker_image:
     name: rustscan/rustscan
     source: pull

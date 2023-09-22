@@ -1,0 +1,28 @@
+---
+- name: install xrdp
+  become: true
+  ansible.builtin.apt:
+    pkg: xrdp
+
+- name: enable and start xrdp service
+  become: true
+  ansible.builtin.systemd:
+    name: xrdp
+    state: started
+    enabled: true
+
+- name: enable and start xrdp-sesman service
+  become: true
+  ansible.builtin.systemd:
+    name: xrdp-sesman
+    state: started
+    enabled: true
+
+- name: fix polkit popup when rdp
+  become: true
+  ansible.builtin.template:
+    src: 45-allow-colord.pkla.j2
+    dest: "/etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla"
+    owner: root
+    group: root
+    mode: '755'

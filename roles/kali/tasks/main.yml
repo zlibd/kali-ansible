@@ -73,3 +73,10 @@
   ansible.builtin.template:
     src: vimrc.j2
     dest: "{{ kali_home }}/.vimrc"
+
+- name: enable sshd
+  become: true
+  ansible.builtin.systemd:
+    name: ssh
+    state: started
+    enabled: true
