@@ -18,6 +18,15 @@
     state: started
     enabled: true
 
+- name: ensure directory exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/polkit-1/localauthority/50-local.d
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
 - name: fix polkit popup when rdp
   become: true
   ansible.builtin.template:
