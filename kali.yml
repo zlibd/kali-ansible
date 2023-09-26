@@ -11,6 +11,6 @@
     - helpers
     - docker
     - chrome 
+    - go-tools
     - autorecon
-    - gowitness
     - rustscan

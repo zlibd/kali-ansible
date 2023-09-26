@@ -73,3 +73,9 @@
   ansible.builtin.template:
     src: vimrc.j2
     dest: "{{ kali_home }}/.vimrc"
+
+- name: gunzip rockyou
+  become: true
+  ansible.builtin.template:
+    cmd: gunzip /usr/share/wordlists/rockyou.txt.gz
+    creates: /usr/share/wordlists/rockyou.txt
