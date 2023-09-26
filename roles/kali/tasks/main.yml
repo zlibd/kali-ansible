@@ -76,6 +76,6 @@
 
 - name: gunzip rockyou
   become: true
-  ansible.builtin.template:
+  ansible.builtin.command:
     cmd: gunzip /usr/share/wordlists/rockyou.txt.gz
     creates: /usr/share/wordlists/rockyou.txt
