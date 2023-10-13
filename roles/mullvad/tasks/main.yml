@@ -1,0 +1,5 @@
+---
+- name: install mullvad
+  become: true
+  ansible.builtin.apt:
+    deb: https://mullvad.net/en/download/app/deb/latest
